@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 export default function SessionsPage() {
 
@@ -9,24 +10,24 @@ export default function SessionsPage() {
                 <SessionContainer>
                     Sexta - 03/03/2023
                     <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
+                        <button><Link to="/success">14:00</Link></button>
+                        <button><Link to="/success">15:00</Link></button>
                     </ButtonsContainer>
                 </SessionContainer>
 
                 <SessionContainer>
                     Sexta - 03/03/2023
                     <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
+                        <button><Link to="/success">14:00</Link></button>
+                        <button><Link to="/success">15:00</Link></button>
                     </ButtonsContainer>
                 </SessionContainer>
 
                 <SessionContainer>
                     Sexta - 03/03/2023
                     <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
+                        <button><Link to="/success">14:00</Link></button>
+                        <button><Link to="/success">15:00</Link></button>
                     </ButtonsContainer>
                 </SessionContainer>
             </div>
