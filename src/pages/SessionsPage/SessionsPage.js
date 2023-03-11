@@ -1,35 +1,55 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import axios from "axios"
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 export default function SessionsPage() {
 
+    const [filme, setFilme] = useState([])
+
+    const params = useParams();
+
+    useEffect(() => {
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${params.idItems}/showtimes`)
+
+        promise.then(resposta => setFilme(resposta.data))
+    }, []);
+
+    if (filme == undefined) {
+        return (console.log("carregando"))
+    }
+
+    let diasDaSemana = filme.days
+
+    console.log(diasDaSemana)
+
+    function SomenteSePreenchido() {
+        if (diasDaSemana === undefined) {
+        } else {
+            return (
+                diasDaSemana.map((dia) =>
+                    <SessionContainer>
+                        {dia.weekday}-{dia.date}
+                        <ButtonsContainer>
+                            <button><Link to="/success">{dia.showtimes[0].name}</Link></button>
+                            <button><Link to="/success">{dia.showtimes[1].name}</Link></button>
+                        </ButtonsContainer>
+                    </SessionContainer>              
+
+                ))
+        }
+    }
     return (
         <PageContainer>
             Selecione o horário
             <div>
-                <SessionContainer>
-                    Sexta - 03/03/2023
+                    {SomenteSePreenchido(diasDaSemana)}
+                    {/* Sexta - 03/03/2023
                     <ButtonsContainer>
                         <button><Link to="/success">14:00</Link></button>
                         <button><Link to="/success">15:00</Link></button>
-                    </ButtonsContainer>
-                </SessionContainer>
-
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button><Link to="/success">14:00</Link></button>
-                        <button><Link to="/success">15:00</Link></button>
-                    </ButtonsContainer>
-                </SessionContainer>
-
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button><Link to="/success">14:00</Link></button>
-                        <button><Link to="/success">15:00</Link></button>
-                    </ButtonsContainer>
-                </SessionContainer>
+                    </ButtonsContainer> */}
             </div>
 
             <FooterContainer>

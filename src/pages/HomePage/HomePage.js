@@ -4,10 +4,11 @@ import axios from "axios"
 import { useState } from "react"
 import { useEffect } from "react"
 
+
+
 export default function HomePage() {
     const [items, setItems] = useState([])
-    const [imagens, setImagens] = useState([])   
-    
+
     useEffect(()=>{
 
         const requisicao = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies")
@@ -15,18 +16,14 @@ export default function HomePage() {
         requisicao.then(resposta => setItems(resposta.data))
     }, []);
 
-    console.log(items.length)
-    for(let i=0;i<items.length;i++){
-        console.log(items[i])
-        imagens.push(items[i].posterURL)
-    }
+    console.log(items)
     return (
         <PageContainer>
             Selecione o filme
 
             <ListContainer>
-                {imagens.map((imagem)=> <MovieContainer>
-                    <Link to="/Seats"><img src={imagem}/></Link>
+                {items.map((item)=> <MovieContainer>
+                    <Link to={`/session/${item.id}`}><img src={item.posterURL}/></Link>
                 </MovieContainer> )}
             </ListContainer>
 
