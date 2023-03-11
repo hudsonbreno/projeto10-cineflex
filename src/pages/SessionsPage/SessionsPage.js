@@ -25,7 +25,7 @@ export default function SessionsPage() {
         return (console.log("carregando"))
     }
 
-    if (filme == undefined){
+    if (imagem == undefined){
         return (console.log("carregando"))
     }
 
@@ -41,8 +41,8 @@ export default function SessionsPage() {
                     <SessionContainer>
                         {dia.weekday}-{dia.date}
                         <ButtonsContainer>
-                            <button><Link to={`/seats/${dia.showtimes.id}`}>{dia.showtimes[0].name}</Link></button>
-                            <button><Link to={`/seats/${dia.showtimes.id}`}>{dia.showtimes[1].name}</Link></button>
+                            <button><Link to={`/seats/${dia.showtimes[0].id}`}>{dia.showtimes[0].name}</Link></button>
+                            <button><Link to={`/seats/${dia.showtimes[1].id}`}>{dia.showtimes[1].name}</Link></button>
                         </ButtonsContainer>
                     </SessionContainer>              
 
