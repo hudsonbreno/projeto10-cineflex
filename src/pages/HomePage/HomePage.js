@@ -23,7 +23,7 @@ export default function HomePage() {
 
             <ListContainer>
                 {items.map((item)=> <MovieContainer data-test="movie">
-                    <Link to={`/session/${item.id}`}><img src={item.posterURL}/></Link>
+                    <Link to={`/sessoes/${item.id}`}><img src={item.posterURL}/></Link>
                 </MovieContainer> )}
             </ListContainer>
 

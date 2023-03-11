@@ -41,8 +41,8 @@ export default function SessionsPage() {
                     <SessionContainer data-test="movie-day">
                         {dia.weekday}-{dia.date}
                         <ButtonsContainer>
-                            <button data-test="showtime"><Link to={`/seats/${dia.showtimes[0].id}`}>{dia.showtimes[0].name}</Link></button>
-                            <button data-test="showtime"><Link to={`/seats/${dia.showtimes[1].id}`}>{dia.showtimes[1].name}</Link></button>
+                            <button data-test="showtime"><Link to={`/assentos/${dia.showtimes[0].id}`}>{dia.showtimes[0].name}</Link></button>
+                            <button data-test="showtime"><Link to={`/assentos/${dia.showtimes[1].id}`}>{dia.showtimes[1].name}</Link></button>
                         </ButtonsContainer>
                     </SessionContainer>              
 
