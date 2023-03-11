@@ -38,11 +38,11 @@ export default function SessionsPage() {
         } else {
             return (
                 diasDaSemana.map((dia) =>
-                    <SessionContainer>
+                    <SessionContainer data-test="movie-day">
                         {dia.weekday}-{dia.date}
                         <ButtonsContainer>
-                            <button><Link to={`/seats/${dia.showtimes[0].id}`}>{dia.showtimes[0].name}</Link></button>
-                            <button><Link to={`/seats/${dia.showtimes[1].id}`}>{dia.showtimes[1].name}</Link></button>
+                            <button data-test="showtime"><Link to={`/seats/${dia.showtimes[0].id}`}>{dia.showtimes[0].name}</Link></button>
+                            <button data-test="showtime"><Link to={`/seats/${dia.showtimes[1].id}`}>{dia.showtimes[1].name}</Link></button>
                         </ButtonsContainer>
                     </SessionContainer>              
 
@@ -73,7 +73,7 @@ export default function SessionsPage() {
                     {SomenteSePreenchido(diasDaSemana)}
             </div>
 
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                     {SomenteSeCarregado(catalogo)}
             </FooterContainer>
 

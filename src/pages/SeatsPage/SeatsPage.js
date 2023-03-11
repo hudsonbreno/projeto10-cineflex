@@ -17,8 +17,6 @@ export default function SeatsPage() {
     promise.then((resposta) => setAssento(resposta.data));
   }, []);
 
-  console.log(assento);
-
   function SomenteSeCarregarAssento(assento) {
     if (assento==="") {
     } else {
@@ -38,15 +36,24 @@ export default function SeatsPage() {
     }
   }
 
+  let local = assento.seats
+
+  function SomenteSeCarregadoLocal(local){
+    if(local === undefined) {
+    } else{
+        console.log(local)
+        return (
+            <>
+                {local.map((lugar)=> <SeatItem>{lugar.name}</SeatItem>)}
+            </>
+        )
+    }
+  }
   return (
     <PageContainer>
       Selecione o(s) assento(s)
       <SeatsContainer>
-        <SeatItem>01</SeatItem>
-        <SeatItem>02</SeatItem>
-        <SeatItem>03</SeatItem>
-        <SeatItem>04</SeatItem>
-        <SeatItem>05</SeatItem>
+        {SomenteSeCarregadoLocal(local)}
       </SeatsContainer>
       <CaptionContainer>
         <CaptionItem>
@@ -62,19 +69,21 @@ export default function SeatsPage() {
           Indisponível
         </CaptionItem>
       </CaptionContainer>
+
+
       <FormContainer>
         <form>
           <h1 htmlFor="name">Nome do Comprador:</h1>
-          <input id="name" htmlForplaceholder="Digite seu nome..." />
+          <input id="name" data-test="client-name" htmlForplaceholder="Digite seu nome..." />
           CPF do Comprador:
-          <input placeholder="Digite seu CPF..." />
-          <button>
+          <input data-test="client-cpf" placeholder="Digite seu CPF..." />
+          <button data-test="book-seat-btn">
             <Link to="/Session">Reservar Assento(s)</Link>
           </button>
         </form>
       </FormContainer>
 
-        <FooterContainer>
+        <FooterContainer data-test="footer">
             {SomenteSeCarregarAssento(assento)}
         </FooterContainer>
     </PageContainer>
