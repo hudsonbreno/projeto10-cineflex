@@ -6,23 +6,32 @@ import { useEffect, useState } from "react";
 
 export default function SessionsPage() {
 
-    const [filme, setFilme] = useState([])
+    const [ filme, setFilme ] = useState([])
+    const [ imagem, setImagem ] = useState([])
 
-    const params = useParams();
+    const params = useParams()
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${params.idItems}/showtimes`)
 
+        const imagem = axios. get(`https://mock-api.driven.com.br/api/v8/cineflex/movies`)
+
         promise.then(resposta => setFilme(resposta.data))
+
+        imagem.then(resposta => setImagem(resposta.data))
     }, []);
 
     if (filme == undefined) {
         return (console.log("carregando"))
     }
 
+    if (filme == undefined){
+        return (console.log("carregando"))
+    }
+
     let diasDaSemana = filme.days
 
-    console.log(diasDaSemana)
+    let catalogo = imagem[params.idItems-1]
 
     function SomenteSePreenchido() {
         if (diasDaSemana === undefined) {
@@ -32,33 +41,40 @@ export default function SessionsPage() {
                     <SessionContainer>
                         {dia.weekday}-{dia.date}
                         <ButtonsContainer>
-                            <button><Link to="/success">{dia.showtimes[0].name}</Link></button>
-                            <button><Link to="/success">{dia.showtimes[1].name}</Link></button>
+                            <button><Link to={`/seats/${dia.showtimes.id}`}>{dia.showtimes[0].name}</Link></button>
+                            <button><Link to={`/seats/${dia.showtimes.id}`}>{dia.showtimes[1].name}</Link></button>
                         </ButtonsContainer>
                     </SessionContainer>              
 
                 ))
         }
     }
+
+    function SomenteSeCarregado(catalogo) {
+        if(catalogo === undefined){
+        } else {
+            return (
+                <>
+                <div>
+                    <img src={catalogo.posterURL} alt="poster" />
+                </div>
+                <div>
+                    <p>{catalogo.title}</p>
+                </div>
+                </>
+            )
+        }
+        }
+    
     return (
         <PageContainer>
             Selecione o horário
             <div>
                     {SomenteSePreenchido(diasDaSemana)}
-                    {/* Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button><Link to="/success">14:00</Link></button>
-                        <button><Link to="/success">15:00</Link></button>
-                    </ButtonsContainer> */}
             </div>
 
             <FooterContainer>
-                <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
-                </div>
-                <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
-                </div>
+                    {SomenteSeCarregado(catalogo)}
             </FooterContainer>
 
         </PageContainer>

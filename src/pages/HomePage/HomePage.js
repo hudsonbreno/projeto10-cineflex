@@ -16,7 +16,7 @@ export default function HomePage() {
         requisicao.then(resposta => setItems(resposta.data))
     }, []);
 
-    console.log(items)
+
     return (
         <PageContainer>
             Selecione o filme

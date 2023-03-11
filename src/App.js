@@ -14,7 +14,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element= {<HomePage/>} /> 
                 <Route path="/Session/:idItems" element={<SessionsPage />} />
-                <Route path="/Seats" element={<SeatsPage/>} /> 
+                <Route path="/Seats/:idSession" element={<SeatsPage/>} /> 
                 <Route path="Success" element={<SuccessPage />} /> 
             </Routes>
             </BrowserRouter>
