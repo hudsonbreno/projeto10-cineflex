@@ -4,8 +4,16 @@ import SeatsPage from "./pages/SeatsPage/SeatsPage"
 import SessionsPage from "./pages/SessionsPage/SessionsPage"
 import SuccessPage from "./pages/SuccessPage/SuccessPage"
 import { Routes, Route, BrowserRouter } from "react-router-dom"
+import { useState } from "react"
 
 export default function App() {
+    const [ cpf, setCpf ] =useState("")
+    const [ nome, setNome ] =useState("")
+    const [ cadeirasSelecionadas, setCadeirasSelecionadas ] = useState([])
+    const [ filme, setFilme ] = useState("")
+    const [ horario, setHorario ] = useState("")
+    const [ dia, setDia ] = useState("")
+
     return (
         <>
             <BrowserRouter>
@@ -14,8 +22,20 @@ export default function App() {
             <Routes>
                 <Route path="/" element= {<HomePage/>} /> 
                 <Route path="/sessoes/:idItems" element={<SessionsPage />} />
-                <Route path="/assentos/:idSession" element={<SeatsPage/>} /> 
-                <Route path="sucesso" element={<SuccessPage />} /> 
+                <Route path="/assentos/:idSession" element={
+                <SeatsPage cpf={cpf} setCpf={setCpf}
+                 nome={nome} setNome={setNome}
+                 cadeirasSelecionadas={cadeirasSelecionadas} setCadeirasSelecionadas={setCadeirasSelecionadas}
+                 filme={filme} setFilme={setFilme}
+                 dia={dia} setDia={setDia}
+                 horario={horario} setHorario={setHorario}/>} /> 
+                <Route path="sucesso" element={
+                <SuccessPage cpf={cpf} setCpf={setCpf}
+                 nome={nome} setNome={setNome}
+                 cadeirasSelecionadas={cadeirasSelecionadas} setCadeirasSelecionadas={setCadeirasSelecionadas}
+                 filme={filme} setFilme={setFilme}
+                 dia={dia} setDia={setDia}
+                 horario={horario} setHorario={setHorario} />} /> 
             </Routes>
             </BrowserRouter>
         </>

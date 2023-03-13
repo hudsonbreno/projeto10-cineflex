@@ -38,7 +38,7 @@ export default function SessionsPage() {
         } else {
             return (
                 diasDaSemana.map((dia) =>
-                    <SessionContainer data-test="movie-day">
+                    <SessionContainer key={dia.id} data-test="movie-day">
                         {dia.weekday}-{dia.date}
                         <ButtonsContainer>
                             <button data-test="showtime"><Link to={`/assentos/${dia.showtimes[0].id}`}>{dia.showtimes[0].name}</Link></button>
