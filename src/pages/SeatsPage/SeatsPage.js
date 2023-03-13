@@ -112,9 +112,9 @@ export default function SeatsPage({cpf, setCpf, nome, setNome, cadeirasSeleciona
       <FormContainer>
         <form onSubmit={formulario}>
           <h1 htmlFor="name">Nome do Comprador:</h1>
-          <input id="name" data-test="client-name" placeholder="Digite seu nome..." onChange={e=>setNome(e.target.value)} required/>
+          <input id="name" value={nome} data-test="client-name" placeholder="Digite seu nome..." onChange={e=>setNome(e.target.value)} required/>
           <h1 htmlFor="cpf">CPF do Comprador:</h1>
-          <input id="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" data-test="client-cpf" placeholder="Digite seu CPF..." onChange={e=>setCpf(e.target.value)} required/>
+          <input id="cpf" value={cpf} pattern="\d{3}\d{3}\d{3}\d{2}" data-test="client-cpf" placeholder="Digite seu CPF..." onChange={e=>setCpf(e.target.value)} required/>
           <button type="submit" data-test="book-seat-btn">
             Reservar Assento(s)
           </button>
