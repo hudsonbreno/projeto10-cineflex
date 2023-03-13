@@ -44,7 +44,7 @@ export default function SeatsPage() {
         console.log(local)
         return (
             <>
-                {local.map((lugar)=> <SeatItem>{lugar.name}</SeatItem>)}
+                {local.map((lugar)=> <SeatItem disponivel={lugar.isAvailable}>{lugar.name}</SeatItem>)}
             </>
         )
     }
@@ -133,8 +133,8 @@ const CaptionContainer = styled.div`
   margin: 20px;
 `;
 const CaptionCircle = styled.div`
-  border: 1px solid blue; // Essa cor deve mudar
-  background-color: lightblue; // Essa cor deve mudar
+  border: 1px solid ${(props)=>props.disponivel?"#7B8B99":"#F7C52B"}; // Essa cor deve mudar
+  background-color: ${(props)=>props.disponivel?"#C3CFD9":"#FBE192"}; // Essa cor deve mudar
   height: 25px;
   width: 25px;
   border-radius: 25px;
@@ -150,8 +150,8 @@ const CaptionItem = styled.div`
   font-size: 12px;
 `;
 const SeatItem = styled.div`
-  border: 1px solid blue; // Essa cor deve mudar
-  background-color: lightblue; // Essa cor deve mudar
+  border: 1px solid ${(props)=>props.disponivel?"#7B8B99":"#F7C52B"}; // Essa cor deve mudar
+  background-color: ${(props)=>props.disponivel?"#C3CFD9":"#FBE192"}; // Essa cor deve mudar
   height: 25px;
   width: 25px;
   border-radius: 25px;
