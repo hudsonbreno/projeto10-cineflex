@@ -1,32 +1,32 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-export default function SuccessPage() {
-
+export default function SuccessPage({cpf, nome, cadeirasSelecionadas, setCadeirasSelecionadas, filme, dia, horario}) {
+    function resetarCadeiras(setCadeirasSelecionadas){
+        setCadeirasSelecionadas([])
+    }
     return (
         <PageContainer>
             <h1>Pedido feito <br /> com sucesso!</h1>
 
             <TextContainer data-test="movie-info">
                 <strong><p>Filme e sessão</p></strong>
-                <p>Tudo em todo lugar ao mesmo tempo</p>
-                <p>03/03/2023 - 14:00</p>
+                <p>{filme}</p>
+                <p>{dia} - {horario}</p>
             </TextContainer>
 
             <TextContainer data-test="seats-info">
                 <strong><p>Ingressos</p></strong>
-                <p>Assento 01</p>
-                <p>Assento 02</p>
-                <p>Assento 03</p>
+                {cadeirasSelecionadas.map((ingresso)=><p key={ingresso.id}> Assento {ingresso.name} </p>)}
             </TextContainer>
 
             <TextContainer data-test="client-info">
                 <strong><p>Comprador</p></strong>
-                <p>Nome: Letícia Chijo</p>
-                <p>CPF: 123.456.789-10</p>
+                <p>Nome: {nome}</p>
+                <p>CPF: {cpf}</p>
             </TextContainer>
 
-            <button><Link to="/">Voltar para Home</Link></button>
+            <button data-test="go-home-btn" onClick={()=> resetarCadeiras(setCadeirasSelecionadas)}><Link to="/">Voltar para Home</Link></button>
         </PageContainer>
     )
 }
